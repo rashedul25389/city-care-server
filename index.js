@@ -12,11 +12,7 @@ const port = process.env.PORT || 3000;
 /* =======================
    Firebase Admin
 ======================= */
-
-const decoded = Buffer.from(process.env.FB_SERVICE_KEY, 'base64').toString(
-    'utf8'
-);
-const serviceAccount = JSON.parse(decoded);
+const serviceAccount = require('./city-care-89520-firebase-adminsdk.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
