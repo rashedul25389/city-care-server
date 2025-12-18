@@ -12,7 +12,10 @@ const port = process.env.PORT || 3000;
 /* =======================
    Firebase Admin
 ======================= */
-const serviceAccount = require('./city-care-89520-firebase-adminsdk.json');
+const decoded = Buffer.from(process.env.FB_SERVICE_KEY, 'base64').toString(
+    'utf8'
+);
+const serviceAccount = JSON.parse(decoded);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -811,7 +814,7 @@ async function run() {
 run();
 
 app.get('/', (req, res) => {
-    res.send('City Care API Running');
+    res.send('City Care API Running.....');
 });
 
 app.listen(port, () => {
